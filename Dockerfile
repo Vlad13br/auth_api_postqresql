@@ -8,6 +8,9 @@ RUN npm install
 
 COPY . .
 
+# Встановлюємо bcrypt з налаштуванням для правильного середовища
+RUN npm rebuild bcrypt --build-from-source
+
 EXPOSE 3001
 
 CMD [ "npm", "start" ]

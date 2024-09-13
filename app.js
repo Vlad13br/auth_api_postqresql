@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const helmet = require("helmet");
 const limiter = require("./middlewares/rate-limit");
 const contactsRouter = require("./routes/contacts");
 const userRouter = require("./routes/user");
@@ -9,6 +10,7 @@ const app = express();
 
 app.use(limiter(15 * 60 * 1000, 100));
 app.use(cors());
+app.use(helmet());
 app.use(express.json({ limit: 10000 }));
 
 app.use("/api/contacts", contactsRouter);
